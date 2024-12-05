@@ -22,11 +22,11 @@ fi
 
 # Run poetry install command
 echo "Installing dependencies"
-poetry install &> /dev/null
+poetry install
 
 # Check if errors were thrown by poetry
 if [[ $? -ne 0 ]]; then
-  echo "Error detected while installing. Running setup.sh as root can cause issues."
+  echo "Error detected while installing dependencies."
   exit 1
 fi
 
