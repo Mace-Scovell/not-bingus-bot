@@ -17,7 +17,7 @@ if [[ $? -ne 0 ]]; then
   sudo apt install -y -qq python3-poetry
   printf "\n"
 else
-  printf "Poetry already installed - Skipping\n"
+  echo "Poetry already installed - Skipping"
 fi
 
 # Run poetry install command
