@@ -33,8 +33,6 @@ Follow the setup instructions bellow before running Bingus
 
 Bingus can be setup automatically using `./setup.sh`
 
-Use `chmod +x setup.sh` to make setup.sh executable
-
 ### Manual Setup
 
 Bingus can be setup manually using the following commands:
@@ -55,7 +53,7 @@ Markov.REPLY_CHANNELS=YourChannelID" > .env
 
 Minimal needed is an env var called `TOKEN` that contains the bot's token.
 
-Cogs may have additional options, these variables **should** be prefix with the cog's name
+Cogs may have additional options, these variables **should** be prefixed with the cog's name
 
 ex: Cog `Math` may have `Math.TEMP_UNIT=fahrenheit`.
 
@@ -80,7 +78,7 @@ knowledge of what tokens the current token has been proceeded by.
 
 #### Markov Config
 
-- `Markov.REPLY_CHANNELS`: A *comma-delimited* list of channel IDs that the bot should have
+- `Markov.REPLY_CHANNELS`: A *comma-delimited* list of channel IDs that the bot should 
   have a chance to reply to messages in. The bot still learns from all channels in realtime, but
   these channels it'll have an 80% of replying to any message
 
@@ -115,15 +113,15 @@ This will print an ephemeral error message to all non-owner users and "Hello Own
 
 ### Best Practices
 
-Generally you'll want to make all state, config, etc. locallized to your cog file. That
+Generally you'll want to make all state, config, etc. localized to your cog file. That
 way we can easily disable it if needed and nothing will break.
 
 #### Cog Config
 
-For simplicity we'll just use env vars for config. Prefix any env vars your cog will
+For simplicity, we'll just use env vars for config. Prefix any env vars your cog will
 read with the cog's name and a `.` (example: `Markov` cog can have a var called `Markov.REPLY_CHANNELS`).
 
-Try to documents these options within this README file under the [The individual cogs docs](#cog-docs).
+Try to document these options within this README file under [The individual cogs docs](#cog-docs).
 Create a third-level heading with your cog's name, and a link to its source code.
 
 #### Formatting

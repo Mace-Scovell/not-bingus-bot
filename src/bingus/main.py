@@ -4,9 +4,10 @@ from dotenv import load_dotenv
 from discord import Bot
 import discord
 import json
+import sys
 from pathlib import Path
 from os import getenv
-from .lib.permissions import NotOwnerError
+from bingus.lib.permissions import NotOwnerError
 
 
 class BingusBot(Bot):
@@ -61,7 +62,7 @@ def main():
     token = getenv("TOKEN")
 
     if token is None:
-        print("Error: Env var TOKEN not found, are you missing it / don't have a .env?")
+        sys.exit("Error: Env var TOKEN not found, are you missing it / don't have a .env?")
     else:
         bot.run(token)
 
