@@ -8,8 +8,44 @@ Current features:
 
 ## Pre-reqs
 
-- Python 3.12
-- Poetry
+- Python 3.11 or newer
+- Python Poetry
+- A [Discord bot](https://discord.com/developers) and its token
+- The channel ID for the Discord channel that Bingus will respond in
+
+## Running Bingus
+### Nix Package Manager
+Bingus can be run using the Nix package manager as long as flakes are enabled
+```
+nix run github:bwc9876/bingus-bot
+```
+### Cloning Repo
+Bingus can be run by cloning the Bingus Bot repo and running with Poetry
+```
+$ poetry install
+$ poetry run bingus
+```
+Follow the setup instructions bellow before running Bingus
+
+## Setup
+
+### Automatic Setup
+
+Bingus can be setup automatically using `./setup.sh`
+
+Use `chmod +x setup.sh` to make setup.sh executable
+
+### Manual Setup
+
+Bingus can be setup manually using the following commands:
+
+```
+$ sudo apt update && sudo apt upgrade -y
+$ sudo apt install -y python3.11 python3-poetry
+$ poetry install
+$ echo "TOKEN=YourToken
+Markov.REPLY_CHANNELS=YourChannelID" > .env
+```
 
 ## Environment Setup
 

@@ -1,31 +1,53 @@
 #!/bin/bash
 
-# Perform apt update and upgrade
-sudo apt update
-sudo apt upgrade -y
-
-# Check if python3.11 or greater, python3-pip, and python3-poetry are installed
-python3 --version &> /dev/null
-pip3 --version &> /dev/null
-poetry --version &> /dev/null
-
+# Check if python3.11 or greater is installed
+python3 -V &> /dev/null
 if [[ $? -ne 0 ]]; then
-    # Install python3.11, python3-pip, and python3-poetry
-    sudo apt install -y python3.11 python3-pip python3-poetry
+  printf "Installing Python3.11\n"
+  sudo apt install -y -qq python3.11
+  printf "\n"
+else
+  printf "Python 3.11 or greater already installed - Skipping\n"
 fi
 
-# Ask the user to input Discord bot token and channel ID
-read -p "Enter Discord bot token: " discord_token
-read -p "Enter Discord channel ID: " discord_channel_id
-
-# Put TOKEN="Discord bot token" into .env
-echo "TOKEN=$discord_token" >> .env
-
-# Put Markov.REPLY_CHANNELS="Discord channel ID" into .env
-echo "Markov.REPLY_CHANNELS=$discord_channel_id" >> .env
+# Check if python3-poetry is installed
+poetry -V &> /dev/null
+if [[ $? -ne 0 ]]; then
+  printf "Installing Poetry\n"
+  sudo apt install -y -qq python3-poetry
+  printf "\n"
+else
+  printf "Poetry already installed - Skipping\n"
+fi
 
 # Run poetry install command
-poetry install
+echo "Installing dependencies"
+poetry install &> /dev/null
 
-# Tell user how to start bingus bot
+# Check if errors were thrown by poetry
+if [[ $? -ne 0 ]]; then
+  echo "Error detected while installing. Running setup.sh as root can cause issues."
+  exit 1
+fi
+
+# Ask user for Discord bot token and channel ID
+while true; do
+  read -p "Enter Discord bot token: " token
+  if [[ ! -z "$token" ]]; then
+    break
+  fi
+done
+
+while true; do
+  read -p "Enter Discord channel ID: " channel_id
+  if [[ ! -z "$channel_id" ]]; then
+    break
+  fi
+done
+
+# Put Discord bot token and channel ID into .env
+echo "TOKEN=$token" >> .env
+echo "Markov.REPLY_CHANNELS=$channel_id" >> .env
+
+# Output success message
 echo "Setup Complete! Use the command 'poetry run bingus' to start Bingus Bot."
