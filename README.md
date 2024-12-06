@@ -39,7 +39,8 @@ Bingus can be setup manually using the following commands:
 
 ```
 $ sudo apt update && sudo apt upgrade -y
-$ sudo apt install -y python3.11 python3-poetry
+$ sudo apt install -y python3.11 curl
+$ curl -sSL https://install.python-poetry.org | python3 -
 $ poetry install
 $ echo "TOKEN=YourToken
 Markov.REPLY_CHANNELS=YourChannelID" > .env
