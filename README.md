@@ -28,21 +28,15 @@ Follow the setup instructions bellow before running Bingus
 
 ## Setup
 
-### Automatic Setup
-
-Bingus can be setup automatically using `./setup.sh`
-
-### Manual Setup
-
-Bingus can be setup manually using the following commands:
+Bingus can be setup using the following commands:
 
 ```
 $ sudo apt update && sudo apt upgrade -y
 $ sudo apt install -y python3.11 curl
 $ curl -sSL https://install.python-poetry.org | python3 -
-$ poetry install
-$ echo "TOKEN=YourToken
-Markov.REPLY_CHANNELS=YourChannelID" > .env
+$ export PATH="$HOME/.local/bin:$PATH"
+$ source $HOME/.bashrc
+$ ./setup.py
 ```
 
 ## Environment Setup
