@@ -19,10 +19,9 @@ Bingus can be run using the Nix package manager as long as flakes are enabled
 ```
 nix run github:bwc9876/bingus-bot
 ```
-### Cloning Repo
+### Python Poetry
 Bingus can be run by cloning the Bingus Bot repo and running with Poetry
 ```
-$ poetry install
 $ poetry run bingus
 ```
 Follow the setup instructions bellow before running Bingus
