@@ -17,7 +17,7 @@ if [[ $? -ne 0 ]]; then
   sudo apt install -y -qq curl
   printf "\n"
 else
-  printf "Curl already installed - Skipping"
+  printf "Curl already installed - Skipping\n"
 fi
 
 # Check if python3-poetry is installed
@@ -66,4 +66,9 @@ echo "TOKEN=$token" >> .env
 echo "Markov.REPLY_CHANNELS=$channel_id" >> .env
 
 # Output success message
-echo "Setup Complete! Use the command 'poetry run bingus' to start Bingus Bot."
+echo "Setup Complete!"
+echo "Add Poetry's bin directory to your PATH environment variable:"
+echo 'export PATH="$HOME/.local/bin:$PATH"'
+echo "Make sure to refresh your console:"
+echo 'source $HOME/.bashrc'
+echo "Use the command 'poetry run bingus' to start Bingus Bot."
