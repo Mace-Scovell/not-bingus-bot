@@ -1,5 +1,41 @@
 #!/bin/bash
 
+# Check if python3.11 or greater is installed
+python3 -V &> /dev/null
+if [[ $? -ne 0 ]]; then
+  printf "Installing Python3.11\n"
+  sudo apt install -y -qq python3.11
+  printf "\n"
+else
+  printf "Python 3.11 or greater already installed - Skipping\n"
+fi
+
+# Check if curl is installed
+curl -V &> /dev/null
+if [[ $? -ne 0 ]]; then
+  printf "Installing Curl\n"
+  sudo apt install -y -qq curl
+  printf "\n"
+else
+  printf "Curl already installed - Skipping"
+fi
+
+# Check if python3-poetry is installed
+poetry -V &> /dev/null
+if [[ $? -ne 0 ]]; then
+  printf "Installing Poetry\n"
+  curl -sSL https://install.python-poetry.org | python3 -
+  printf "\n"
+else
+  echo "Poetry already installed - Skipping"
+fi
+
+# Update Path to include Poetry
+export PATH="$HOME/.local/bin:$PATH"
+
+# Refresh Source to allow using Poetry
+source $HOME/.bashrc
+
 # Run poetry install command
 echo "Installing dependencies"
 poetry install
